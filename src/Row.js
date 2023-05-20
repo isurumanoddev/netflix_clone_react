@@ -1,9 +1,24 @@
-import React from 'react';
-import requests from "./requests";
+import React,{useState,useEffect} from 'react';
 
-function Row({title}) {
+
+
+function Row({title,fetchUrl}) {
     
-    const [movies,setMovies] = React.useState([])
+    const [movies,setMovies] = useState([])
+
+    useEffect(() => {
+        async function fetchData(){
+            const request =await fetch(fetchUrl)
+            const data = await request.json()
+            console.log(data.results)
+
+
+            return request
+        }
+        fetchData()
+
+
+    },[])
 
     return (
         <div>

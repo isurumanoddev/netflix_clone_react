@@ -1,7 +1,9 @@
 import './App.css';
 import Row from "./Row";
 import requests from "./requests";
-import instance from "./axios";
+
+
+
 
 function App() {
 
@@ -11,8 +13,8 @@ function App() {
             <h1>Hello isuru</h1>
 
             <Row title="NETFLIX ORIGINALS" fetchUrl={requests.fetchNetflixOriginals}/>
-            <Row title="Trending Now"/>
-            <Row title="Discover"/>
+            <Row title="Trending Now" fetchUrl={requests.fetchTrending}/>
+            <Row title="Discover" fetchUrl={requests.fetchTopRated}/>
 
 
 
