@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import "./Row.css"
+import YouTube from "react-youtube";
 
 const base_url = "https://image.tmdb.org/t/p/original/"
 
@@ -7,6 +8,16 @@ const base_url = "https://image.tmdb.org/t/p/original/"
 function Row({title, fetchUrl, isLargeRow}) {
 
     const [movies, setMovies] = useState([])
+    const [trailer, setTrailer] = useState("")
+
+    const opts = {
+        height: "500",
+        width: "100%",
+        playerVars: {
+            autoplay: 1,
+        },
+    };
+
 
 
     useEffect(() => {
@@ -25,6 +36,12 @@ function Row({title, fetchUrl, isLargeRow}) {
 
     }, [fetchUrl])
 
+    const clickOnPoster = (movie) => {
+        if (trailer) {
+            setTrailer("")
+        }
+    }
+
 
     return (
         <div className="row">
@@ -37,6 +54,7 @@ function Row({title, fetchUrl, isLargeRow}) {
                         <img
                             key={movie.id}
                             alt={movie.name}
+                            onClick={() => clickOnPoster(movie)}
                             // className={ "row__poster"}
                             className={`row__poster ${isLargeRow && "row__poster__large"}`}
                             src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}/>)
@@ -44,8 +62,12 @@ function Row({title, fetchUrl, isLargeRow}) {
                 }
 
             </div>
+
+            {trailer && <Youtube vedioId={trailer} opts={opts}></Youtube>}
+
         </div>
     );
+
 }
 
 export default Row;
