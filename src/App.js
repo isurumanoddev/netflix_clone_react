@@ -12,7 +12,7 @@ function App() {
     return (
         <div className="App">
 
-            <Banner fetchUrl={requests.fetchTrending}/>
+            <Banner fetchUrl={requests.fetchNetflixOriginals}/>
             <Row
                 title="NETFLIX ORIGINALS"
                 fetchUrl={requests.fetchNetflixOriginals}
