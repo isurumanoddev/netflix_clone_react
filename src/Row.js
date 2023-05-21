@@ -1,47 +1,58 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Row.css"
 import YouTube from "react-youtube";
+import movieTrailer from "movie-trailer"
+
 
 const base_url = "https://image.tmdb.org/t/p/original/"
 
-
 function Row({title, fetchUrl, isLargeRow}) {
-
     const [movies, setMovies] = useState([])
-    const [trailer, setTrailer] = useState("")
-
-    const opts = {
-        height: "500",
-        width: "100%",
-        playerVars: {
-            autoplay: 1,
-        },
-    };
-
+    const [trailerUrl, settrailerUrl] = useState("")
 
 
     useEffect(() => {
         async function fetchData() {
-            const request = await fetch(fetchUrl)
+            const request = await fetch(fetchUrl);
             const data = await request.json()
-
             setMovies(data.results)
 
 
-            return request
         }
 
         fetchData()
+    }, [])
 
+    const getTrailer = (movie) => {
+        if (trailerUrl) {
+            settrailerUrl("")
+        } else {
+            movieTrailer(movie?.name || movie?.title || "")
+                .then(url => {
+                    const urlParams = new URLSearchParams(new URL(url).search)
+                    settrailerUrl(urlParams.get("v"));
+                }).catch(error => console.log(error))
 
-    }, [fetchUrl])
-
-    const clickOnPoster = (movie) => {
-        if (trailer) {
-            setTrailer("")
         }
     }
+    const opts = {
+        position: "absolute",
+        top: "0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: '590',
+        width: '100%',
+        playerVars: {
 
+            autoplay: 1, // Auto-play the video
+            controls: 0, // Hide the player controls
+            modestbranding: 1, // Hide the YouTube logo
+            showinfo: 0, // Hide video title and uploader info
+            fs: 0, // Disable
+
+        },
+    };
 
     return (
         <div className="row">
@@ -49,21 +60,20 @@ function Row({title, fetchUrl, isLargeRow}) {
 
 
             <div className="row__posters">
-                {
-                    movies.map(movie =>
-                        <img
-                            key={movie.id}
-                            alt={movie.name}
-                            onClick={() => clickOnPoster(movie)}
-                            // className={ "row__poster"}
-                            className={`row__poster ${isLargeRow && "row__poster__large"}`}
-                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}/>)
-
-                }
-
+                {movies.map((movie) =>
+                    <img
+                        onClick={() => getTrailer(movie)}
+                        className={`row__poster ${isLargeRow && "row__poster__large"}`}
+                        src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                        alt={movie.name}
+                        key={movie.id}
+                    />
+                )}
             </div>
+            {
+                trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>
+            }
 
-            {trailer && <Youtube vedioId={trailer} opts={opts}></Youtube>}
 
         </div>
     );

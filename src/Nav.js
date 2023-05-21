@@ -3,24 +3,20 @@ import "./Nav.css"
 
 function Nav(props) {
 
-    const [showNav, setShowNav] = useState(false)
-
-    useEffect(() => {
+    const [showNav,setShowNav] =useState(false)
 
 
-        window.addEventListener("scroll", () => {
-            console.log("resized")
-             if (window.scrollY > 100) {
+    useEffect(() =>{
+        window.addEventListener("scroll",() => {
+            if (window.scrollY > 100) {
                 setShowNav(true)
             }else setShowNav(false)
-
-        });
-
+        })
 
 
 
-    }, [])
-console.log(showNav)
+    })
+
 
     return (
         <div className={`nav ${showNav && "nav__black"}`}>
