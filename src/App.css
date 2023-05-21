@@ -24,4 +24,24 @@
   width: max-content;
 
 }
+.row{
+  display:flex;
+  flex-direction:column;
+  overflow-x: scroll;
+}
+.row__posters{
+  display: flex;
+    height : 260px;
+  gap: 0.25rem;
+  padding: 1rem ;
+}
+.row__poster {
+  height: 240px;
+  width: auto;
+  object-fit: cover;
+  transition: 0.3s;
+}
 
+.row__poster:hover {
+  transform: scale(1.1);
+}
