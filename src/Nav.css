@@ -1,0 +1,25 @@
+.nav {
+position: fixed;
+    /*background: #000000;*/
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    z-index: 1;
+
+}
+.nav__logo {
+    width: 100px;
+
+    object-fit: contain;
+
+}
+.nav__avatar {
+    width: 30px;
+    /*position: fixed;*/
+    /*right: 0;*/
+
+    border-radius: 10%;
+}
