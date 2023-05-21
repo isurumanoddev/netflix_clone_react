@@ -47,9 +47,7 @@ function Row({title, fetchUrl, isLargeRow}) {
 
             autoplay: 1, // Auto-play the video
             controls: 0, // Hide the player controls
-            modestbranding: 1, // Hide the YouTube logo
-            showinfo: 0, // Hide video title and uploader info
-            fs: 0, // Disable
+
 
         },
     };
