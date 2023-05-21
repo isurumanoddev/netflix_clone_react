@@ -1,18 +1,29 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Nav.css"
+
 function Nav(props) {
 
-    useEffect(() =>{
-        window.addEventListener("scroll",() =>{
+    const [showNav, setShowNav] = useState(false)
 
-        })
-
-    },[])
+    useEffect(() => {
 
 
+        window.addEventListener("scroll", () => {
+            console.log("resized")
+             if (window.scrollY > 100) {
+                setShowNav(true)
+            }else setShowNav(false)
+
+        });
+
+
+
+
+    }, [])
+console.log(showNav)
 
     return (
-        <div className="nav">
+        <div className={`nav ${showNav && "nav__black"}`}>
             <img
                 src="https://www.edigitalagency.com.au/wp-content/uploads/netflix-logo-png-large.png"
                 alt="nav-logo"
