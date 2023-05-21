@@ -1,18 +1,17 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Row.css"
 
-const base_url ="https://image.tmdb.org/t/p/original/"
+const base_url = "https://image.tmdb.org/t/p/original/"
 
 
+function Row({title, fetchUrl, isLargeRow}) {
 
-function Row({title,fetchUrl}) {
-    
-    const [movies,setMovies] = useState([])
+    const [movies, setMovies] = useState([])
 
 
     useEffect(() => {
-        async function fetchData(){
-            const request =await fetch(fetchUrl)
+        async function fetchData() {
+            const request = await fetch(fetchUrl)
             const data = await request.json()
 
             setMovies(data.results)
@@ -20,18 +19,13 @@ function Row({title,fetchUrl}) {
 
             return request
         }
+
         fetchData()
 
 
-    },[fetchUrl])
+    }, [fetchUrl])
 
-
-    const movie = movies.map(movie =>
-        <img
-            key={movie.id}
-            alt={movie.name}
-            className="row__poster"
-            src={`${base_url}${movie.poster_path}`}/> )
+    console.log(movies)
 
     return (
         <div className="row">
@@ -39,9 +33,16 @@ function Row({title,fetchUrl}) {
 
 
             <div className="row__posters">
-                {movie}
+                {
+                    movies.map(movie =>
+                        <img
+                            key={movie.id}
+                            alt={movie.name}
+                            // className={ "row__poster"}
+                            className={`row__poster ${isLargeRow && "row__poster__large"}`}
+                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}/>)
 
-
+                }
 
             </div>
         </div>

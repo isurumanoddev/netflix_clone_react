@@ -1,6 +1,7 @@
 import './App.css';
 import Row from "./Row";
 import requests from "./requests";
+import Banner from "./Banner";
 
 
 
@@ -10,15 +11,19 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Hello isuru</h1>
 
-            <Row title="NETFLIX ORIGINALS" fetchUrl={requests.fetchNetflixOriginals}/>
+            <Banner/>
+            <Row
+                title="NETFLIX ORIGINALS"
+                fetchUrl={requests.fetchNetflixOriginals}
+                isLargeRow ={true}/>
+
             <Row title="Trending Now" fetchUrl={requests.fetchTrending}/>
             <Row title="Discover" fetchUrl={requests.fetchTopRated}/>
-            <Row title="Action" fetchUrl={requests.fetchAction}/>
-            <Row title="Comedy" fetchUrl={requests.fetchComedy}/>
-            <Row title="Horror" fetchUrl={requests.fetchHorror}/>
-            <Row title="Romance" fetchUrl={requests.fetchRomance}/>
+            <Row title="Action Movies" fetchUrl={requests.fetchAction}/>
+            <Row title="Comedy Movies" fetchUrl={requests.fetchComedy}/>
+            <Row title="Horror Movies" fetchUrl={requests.fetchHorror}/>
+            <Row title="Romance Movies" fetchUrl={requests.fetchRomance}/>
             <Row title="Documentaries" fetchUrl={requests.fetchDoc}/>
 
 
