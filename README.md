@@ -2,15 +2,11 @@
 This project is a Netflix clone built using React.js, HTML, CSS, and JavaScript, integrating the TMDB API. It aims to replicate the user interface of the popular streaming platform, Netflix, allowing users to browse and search movies and TV shows.
 
 # Features
-Movie and TV Show Listing: Users can explore a wide range of movies and TV shows, with detailed information such as titles, genres, release dates, ratings, and descriptions.
 
-Search Functionality: Users can search for specific movies or TV shows based on keywords, allowing them to find their favorite content quickly.
 
 Movie and TV Show Details: Clicking on a movie or TV show reveals additional information, including trailers, cast and crew details, and related recommendations.
 
 User Authentication: Users can sign up, log in, and log out using their email addresses or social media accounts for a personalized experience.
-
-Watchlist: Users can add movies and TV shows to their watchlist, allowing them to keep track of content they plan to watch later.
 
 Responsive Design: The user interface is designed to be responsive, ensuring a seamless experience across various devices, including desktops, tablets, and mobile phones.
 
